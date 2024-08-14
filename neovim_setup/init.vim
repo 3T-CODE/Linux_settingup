@@ -20,6 +20,7 @@ Plug 'voldikss/vim-floaterm'
 Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
 
 
 call plug#end()
@@ -31,7 +32,12 @@ set number
 "Set keymap
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-t> :FloatermToggle<CR>
-nnoremap fff :Files<CR>
+nnoremap ff :Files<CR>
+nnoremap bf :Buffers<CR>
+nnoremap bn :bnext<CR>
+nnoremap bv :bprevious<CR>
+nnoremap bd :bd<CR>
+nnoremap bq :bd!<CR>
 
 "Set up for coc keymap
 " use <tab> to trigger completion and navigate to the next complete item
@@ -67,9 +73,19 @@ let g:airline_theme='atomic'
 "Set default font
 set encoding=UTF-8
 
+"Turn on tabline
+let g:airline#extensions#tabline#enabled = 1
 
+"Custom statusline -fzf
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
 
-
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
 
 
