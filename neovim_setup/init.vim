@@ -29,13 +29,16 @@ call plug#end()
 "Set number
 set number 
 
-"Turn on floaterm at start
+"Turn on floaterm at start then hide it
 autocmd VimEnter * FloatermNew! cd %:p:h
+autocmd VimEnter * FloatermToggle 
 
 "Set keymap
+"NERDTree
 nnoremap <C-n> :NERDTreeToggle<CR>
-"nnoremap <C-t> :FloatermNew! cd %:p:h<CR>
-nnoremap <C-t> :FloatermToggle!<CR>
+"Floaterm
+nnoremap <C-t> :FloatermToggle<CR>
+"fzf
 nnoremap ff :Files<CR>
 nnoremap bf :Buffers<CR>
 nnoremap bn :bnext<CR>
