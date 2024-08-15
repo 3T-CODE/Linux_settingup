@@ -29,9 +29,13 @@ call plug#end()
 "Set number
 set number 
 
+"Turn on floaterm at start
+autocmd VimEnter * FloatermNew! cd %:p:h
+
 "Set keymap
 nnoremap <C-n> :NERDTreeToggle<CR>
-nnoremap <C-t> :FloatermToggle<CR>
+"nnoremap <C-t> :FloatermNew! cd %:p:h<CR>
+nnoremap <C-t> :FloatermToggle!<CR>
 nnoremap ff :Files<CR>
 nnoremap bf :Buffers<CR>
 nnoremap bn :bnext<CR>
@@ -87,5 +91,7 @@ endfunction
 
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-
-
+"Set floaterminal posistion 
+let g:floaterm_position = 'topright'
+let g:floaterm_height = 20 
+let g:floaterm_width = 80
