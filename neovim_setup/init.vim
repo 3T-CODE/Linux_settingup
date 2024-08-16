@@ -63,6 +63,9 @@ inoremap <silent><expr> j
 "use k to move up
 inoremap <expr>k coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
+"Press enter to select coc 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
 " use <c-space> for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <C-@> on vim
