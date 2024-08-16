@@ -21,7 +21,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/plenary.nvim'
-
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-neotest/nvim-nio'
+Plug 'rcarriga/nvim-dap-ui'
 
 call plug#end()
 
@@ -53,10 +55,14 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
+"use J to move down
+inoremap <silent><expr> j
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
+      \ CheckBackspace() ? "\j" :
       \ coc#refresh()
+"use k to move up
+inoremap <expr>k coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
 " use <c-space> for trigger completion
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <C-@> on vim
@@ -98,3 +104,7 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 let g:floaterm_position = 'topright'
 let g:floaterm_height = 20 
 let g:floaterm_width = 80
+
+
+"coc use Crtl + n and Crtl + p to select in default
+
