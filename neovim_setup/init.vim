@@ -47,6 +47,10 @@ nnoremap bn :bnext<CR>
 nnoremap bv :bprevious<CR>
 nnoremap bd :bd<CR>
 nnoremap bq :bd!<CR>
+"Move line up and down 
+nnoremap <A-k> :m +1<CR>
+nnoremap <A-j> :m -2<CR>
+
 
 "Set up for coc keymap
 " use <tab> to trigger completion and navigate to the next complete item
@@ -56,12 +60,12 @@ function! CheckBackspace() abort
 endfunction
 
 "use J to move down
-inoremap <silent><expr> j
+inoremap <silent><expr> <Tab>
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\j" :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 "use k to move up
-inoremap <expr>k coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <expr><S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 "Press enter to select coc 
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
